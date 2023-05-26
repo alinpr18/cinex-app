@@ -3,19 +3,19 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-export const Search = (): JSX.Element => {
-  const [search, setSearch] = useState<string>('')
+export const SearchInput = (): JSX.Element => {
+  const [searchQuery, setSearchQuery] = useState<string>('')
   const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
-    if (search === '') return
-    const encodedSearchQuery = encodeURI(search)
+    if (searchQuery === '') return
+    const encodedSearchQuery = encodeURI(searchQuery)
     router.push(`/search?q=${encodedSearchQuery}`)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearch(e.target.value)
+    setSearchQuery(e.target.value)
   }
 
   return (

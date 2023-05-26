@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Search } from '../components/Search'
+import { SearchInput } from '../components/SearchInput'
 import { getSearchMovie } from '../services/getSearchMovie'
 import Image from 'next/image'
 import { IMAGE_PATH } from '../constants'
@@ -12,7 +12,7 @@ export default async function SearchPage (params: { searchParams: { q: string } 
     <>
       <header className='pt-11 px-6 flex flex-col gap-4'>
         <LinkToBack className='text-2xl w-fit' />
-        <Search />
+        <SearchInput />
       </header>
 
       <main>

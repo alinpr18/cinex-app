@@ -9,6 +9,8 @@ export default async function MoviePage ({ params }: { params: { id: string } })
   const movie = await getMovieDetails({ movieId: Number(params.id) })
   const similarMovies = await getSimilarMovies({ movieId: Number(params.id) })
 
+  console.log(movie)
+
   return (
     <>
       <header className='relative flex'>

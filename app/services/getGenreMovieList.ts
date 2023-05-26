@@ -9,7 +9,7 @@ export interface Genre {
   name: string
 }
 
-export const getGenresMovieList = async (): Promise<Genre[]> => {
+export const getGenreMovieList = async (): Promise<Genre[]> => {
   const res = await fetch(`${API_URL}/genre/movie/list?${API_KEY}`)
   const data: Genres = await res.json()
   return data.genres

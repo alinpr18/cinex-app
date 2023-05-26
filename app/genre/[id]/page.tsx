@@ -1,24 +1,21 @@
 import { LinkToBack } from '@/app/components/LinkToBack'
 import { IMAGE_PATH } from '@/app/constants'
-import { Genre, getGenresMovieList } from '@/app/services/getGenresMovieList'
+import { getGenreMovieList } from '@/app/services/getGenreMovieList'
 import { getMovieDiscover } from '@/app/services/getMovieDiscover'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default async function CategoryPage ({ params }: { params: { id: string } }): Promise<JSX.Element> {
+export default async function GenrePage ({ params }: { params: { id: string } }): Promise<JSX.Element> {
   const movies = await getMovieDiscover({ genreId: params.id })
-  const categoryMovie = await getGenresMovieList()
+  const genreMovieList = await getGenreMovieList()
 
-  const filterCategory = (): Genre[] => {
-    const data = categoryMovie.filter((movie) => movie.id === Number(params.id))
-    return data
-  }
+  const filterGenre = genreMovieList.filter((movie) => movie.id === Number(params.id))
 
   return (
     <>
       <header className='pt-11 px-6 flex gap-2'>
         <LinkToBack className='text-2xl w-fit' />
-        {filterCategory().map(({ name, id }) => (
+        {filterGenre.map(({ name, id }) => (
           <h1 className='text-2xl font-extrabold' key={id}>{name}</h1>
         ))}
       </header>

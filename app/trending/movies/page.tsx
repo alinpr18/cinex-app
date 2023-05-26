@@ -1,5 +1,5 @@
 import { LinkToBack } from '@/app/components/LinkToBack'
-import { Search } from '@/app/components/Search'
+import { SearchInput } from '@/app/components/SearchInput'
 import { IMAGE_PATH } from '@/app/constants'
 import { getTrendingMovies } from '@/app/services/getTrendingMovies'
 import Image from 'next/image'
@@ -15,7 +15,7 @@ export default async function MoviesPage (): Promise<JSX.Element> {
           <LinkToBack className='text-2xl w-fit' />
           <h1 className='text-2xl font-extrabold'>Trending</h1>
         </div>
-        <Search />
+        <SearchInput />
       </header>
 
       <main>

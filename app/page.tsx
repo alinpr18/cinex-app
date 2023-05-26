@@ -1,18 +1,18 @@
 import Image from 'next/image'
-import { getGenresMovieList } from './services/getGenresMovieList'
+import { getGenreMovieList } from './services/getGenreMovieList'
 import { getTrendingMovies } from './services/getTrendingMovies'
-import { Search } from './components/Search'
+import { SearchInput } from './components/SearchInput'
 import Link from 'next/link'
 import { IMAGE_PATH } from './constants'
 
 export default async function Home (): Promise<JSX.Element> {
-  const genres = await getGenresMovieList()
+  const genres = await getGenreMovieList()
   const trending = await getTrendingMovies()
   return (
     <>
       <header className='pt-11 px-6 flex flex-col gap-4'>
         <h1 className='text-2xl font-extrabold'>Cinex</h1>
-        <Search />
+        <SearchInput />
       </header>
 
       <main>
@@ -31,12 +31,12 @@ export default async function Home (): Promise<JSX.Element> {
         </section>
 
         <section className='pt-12 px-6 flex flex-col gap-4'>
-          <h2 className='text-lg font-bold'>Categories</h2>
+          <h2 className='text-lg font-bold'>Genres</h2>
           <div>
             <ul className='grid gap-y-2 grid-cols-2'>
               {genres.map(({ name, id }) => (
                 <li key={id} className="before:content-[''] before:rounded-md gap-3 before:bg-slate-500 before:w-[30px] before:h-[30px] flex items-center">
-                  <Link href={`/category/${id}`}>{name}</Link>
+                  <Link href={`/genre/${id}`}>{name}</Link>
                 </li>
               ))}
             </ul>
