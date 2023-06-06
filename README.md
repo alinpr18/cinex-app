@@ -1,4 +1,4 @@
-# Cinex App
+# Cinex
 
 Una página web que permite buscar, filtrar y ver detalles de una película consumiendo la API de The Movie Database (TMDB). La carga de imágenes optimizada con el componente `<Image />` y uso de rutas dinámicas
 
