@@ -1,29 +1,29 @@
 {
-  "name": "cinex",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "pnpm ts-standard",
-    "lint:fix": "pnpm ts-standard --fix"
-  },
-  "dependencies": {
-    "@types/node": "20.2.1",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.3",
-    "next": "13.4.3",
-    "postcss": "8.4.23",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
-  },
-  "devDependencies": {
-    "ts-standard": "12.0.2"
-  }
+	"name": "cinex",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"axios": "1.6.8",
+		"next": "14.1.4",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.6.3",
+		"@types/node": "20.11.30",
+		"@types/react": "18.2.73",
+		"@types/react-dom": "18.2.23",
+		"autoprefixer": "10.4.19",
+		"eslint": "8.57.0",
+		"eslint-config-next": "14.1.4",
+		"postcss": "8.4.38",
+		"tailwindcss": "3.4.3",
+		"typescript": "5.4.3"
+	}
 }

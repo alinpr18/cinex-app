@@ -1,34 +1,23 @@
-import { LinkToBack } from '@/app/components/LinkToBack'
-import { SearchInput } from '@/app/components/SearchInput'
-import { IMAGE_PATH } from '@/app/constants'
-import { getTrendingMovies } from '@/app/services/getTrendingMovies'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Header } from "@/components/header";
+import {
+	TrendingMovies,
+	TrendingMoviesSkeleton,
+} from "@/components/trending-movies";
+import { Suspense } from "react";
 
-export default async function MoviesPage (): Promise<JSX.Element> {
-  const trending = await getTrendingMovies()
-
-  return (
-    <>
-      <header className='pt-11 px-6 flex flex-col gap-4'>
-        <div className='flex gap-2'>
-          <LinkToBack className='text-2xl w-fit' />
-          <h1 className='text-2xl font-extrabold'>Trending</h1>
-        </div>
-        <SearchInput />
-      </header>
-
-      <main>
-        <section className='pt-8 px-6 flex flex-col gap-6'>
-          <div className='grid grid-cols-2 gap-4'>
-            {trending.map(({ id, poster_path: url, title }) => (
-              <Link key={id} href={`/movie/${id}`}>
-                <Image className='rounded-lg' src={`${IMAGE_PATH}${url}`} width={200} height={200} alt={title} />
-              </Link>
-            ))}
-          </div>
-        </section>
-      </main>
-    </>
-  )
+export default function MoviesPage() {
+	return (
+		<>
+			<Header />
+			<main>
+				<section className="pt-8 px-6 flex flex-col gap-6">
+					<div className="grid grid-cols-2 gap-4">
+						<Suspense fallback={<TrendingMoviesSkeleton />}>
+							<TrendingMovies />
+						</Suspense>
+					</div>
+				</section>
+			</main>
+		</>
+	);
 }

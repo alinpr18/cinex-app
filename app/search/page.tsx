@@ -1,37 +1,32 @@
-import Link from 'next/link'
-import { SearchInput } from '../components/SearchInput'
-import { getSearchMovie } from '../services/getSearchMovie'
-import Image from 'next/image'
-import { IMAGE_PATH } from '../constants'
-import { LinkToBack } from '../components/LinkToBack'
+import { Header } from "@/components/header";
+import {
+	MoviesSearchList,
+	MoviesSearchListSkeleton,
+} from "@/components/movies-search-list";
+import { Suspense } from "react";
 
-export default async function SearchPage (params: { searchParams: { q: string } }): Promise<JSX.Element> {
-  const data = await getSearchMovie({ query: params.searchParams.q })
+interface SearchPageProps {
+	searchParams: {
+		q: string;
+	};
+}
 
-  return (
-    <>
-      <header className='pt-11 px-6 flex flex-col gap-4'>
-        <LinkToBack className='text-2xl w-fit' />
-        <SearchInput />
-      </header>
-
-      <main>
-        <section className='pt-8 px-6'>
-          <div className='grid grid-cols-2 gap-4'>
-            {
-              data.map(({ id, poster_path: url, title }) => (
-                (url != null)
-                  ? (
-                    <Link key={id} href={`/movie/${id}`}>
-                      <Image className='rounded-lg' src={`${IMAGE_PATH}${url}`} width={200} height={200} alt={title} />
-                    </Link>
-                    )
-                  : null
-              ))
-            }
-          </div>
-        </section>
-      </main>
-    </>
-  )
+export default function SearchPage({ searchParams }: SearchPageProps) {
+	const query = searchParams.q;
+	return (
+		<>
+			<Header />
+			<main>
+				<section className="pt-8 px-6">
+					<div className="grid grid-cols-2 gap-4">
+						{query ? (
+							<Suspense fallback={<MoviesSearchListSkeleton />}>
+								<MoviesSearchList query={query} />
+							</Suspense>
+						) : null}
+					</div>
+				</section>
+			</main>
+		</>
+	);
 }
